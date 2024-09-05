@@ -1,0 +1,8 @@
+- name: Disable selinux
+  ansible.posix.selinux:
+    state: disabled
+  notify: reboot
+- name: smth tasks
+  command:
+    cmd: echo hello world
+  notify: reboot

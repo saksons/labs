@@ -1,0 +1,19 @@
+---
+# handlers file for haproxy
+- name: start haproxy
+  systemd_service:
+    name: haproxy
+    state: started
+    enabled: true
+
+- name: restart haproxy
+  systemd_service:
+    name: haproxy
+    state: restarted
+    enabled: true
+
+- name: restart keepalived
+  systemd_service:
+    name: keepalived
+    state: restarted
+    enabled: true

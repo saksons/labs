@@ -1,0 +1,8 @@
+---
+# tasks file for haproxy
+- name: Include tasks
+  include_tasks: "{{ item }}"
+  loop:
+    - install.yml
+    - configuration.yml
+  when: ansible_facts["hostname"] in ["haproxy1", "haproxy2"]

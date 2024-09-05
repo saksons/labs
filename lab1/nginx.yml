@@ -1,0 +1,27 @@
+- name: Install ngixn pkg
+  hosts: webservers
+  become: true
+  vars:
+    nginx_listen_port: 8080
+  tasks:
+    - name: install nginx from repo
+      yum:
+        name: nginx
+        state: latest
+      tags:
+        nginx-package
+        packages
+    - name: Update config
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      tags:
+        nginx-configuration
+      notify:
+        - restart nginx
+  handlers:
+    - name: restart nginx
+      systemd_service:
+        name: nginx
+        state: restarted
+        enabled: true

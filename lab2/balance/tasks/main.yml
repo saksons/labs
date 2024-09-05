@@ -1,0 +1,8 @@
+---
+# tasks file for balance
+- name: Include tasks
+  include_tasks: "{{ item }}"
+  loop:
+    - install.yml
+    - configuration.yml
+  when: ansible_facts["hostname"] == "rrobin"
